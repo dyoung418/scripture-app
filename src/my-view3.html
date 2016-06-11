@@ -14,7 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <template>
 
-    <style>
+    <style include="app-theme-styles">
       :host {
         display: block;
         padding: 10px;
@@ -24,24 +24,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 16px;
         margin: 24px;
         border-radius: 5px;
-        background-color: #fff;
-        color: #757575;
+        background-color: var(--text-primary-color);
+        color: var(--primary-text-color);
       }
       .circle {
         display: inline-block;
         height: 64px;
         width: 64px;
         border-radius: 50%;
-        background: #ddd;
         line-height: 64px;
         font-size: 30px;
-        color: #555;
+        background: var(--accent-color);
+        color: var(--primary-text-color);
         text-align: center;
       }
       h1 {
         font-size: 22px;
         margin: 16px 0;
-        color: #212121;
+        color: var(--primary-text-color);
       }
     </style>
 

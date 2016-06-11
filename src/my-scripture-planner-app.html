@@ -21,24 +21,60 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="my-icons.html">
 
-<dom-module id="my-app">
+<dom-module id="my-scripture-planner-app">
 
   <template>
-
-    <style>
-
+    <style include="app-theme-styles"> 
       :host {
         display: block;
-        --app-primary-color: #4285f4;
-        --app-secondary-color: black;
+        --app-primary-color: var(--default-primary-color);
+        --app-secondary-color: var(--dark-primary-color);
       }
 
       app-header {
-        background-color: var(--app-primary-color);
+        /*height: 300px;*/
+        background-color: var(--default-primary-color);
+        --app-header-background-front-layer: {
+          background-color: var(--default-primary-color);
+          background-image: url("/images/lds-scriptures.jpg")
+        };
+        --app-header-background-rear-layer: {
+          background-color: var(--dark-primary-color);
+        };
         color: #fff;
       }
       app-header paper-icon-button {
-        --paper-icon-button-ink-color: white;
+        --paper-icon-button-ink-color: var(--primary-text-color);
+      }
+/*      app-toolbar {
+        height: 64px;
+      }
+      app-toolbar.tall {
+       height: 148px;
+      }
+*/
+      [title] {
+        font-weight: lighter;
+        margin-left: 108px;
+      }
+      [condensed-title] {
+        font-weight: lighter;
+        margin-left: 30px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      [condensed-title] i {
+        font-weight: 100;
+        font-style: normal;
+      }
+      @media (max-width: 639px) {
+        [title] {
+          margin-left: 50px;
+          font-size: 30px;
+        }
+        [condensed-title] {
+          font-size: 15px;
+        }
       }
 
       .drawer-list {
@@ -49,10 +85,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 0 16px;
         line-height: 40px;
         text-decoration: none;
-        color: var(--app-secondary-color);
+        color: var(--secondary-text-color);
       }
       .drawer-list a.iron-selected {
-        color: black;
+        color: var(--primary-text-color);
         font-weight: bold;
       }
       .drawer-list a.subroute {
@@ -83,12 +119,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </app-drawer>
 
       <!-- Main content -->
-      <app-header-layout has-scrolling-region>
+      <app-header-layout>
 
-        <app-header condenses reveals effects="waterfall">
+        <app-header condenses reveals effects="waterfall resize-title blend-background parallax-background">
           <app-toolbar>
             <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
-            <div title>My App</div>
+            <h4 condensed-title>Scripture Reading Planner</h4>
+          </app-toolbar>
+          <app-toolbar class="tall">
+            <h2 title>Scripture Reading Planner</h2>
           </app-toolbar>
         </app-header>
 
@@ -100,7 +139,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </iron-pages>
 
       </app-header-layout>
-
     </app-drawer-layout>
 
   </template>
@@ -109,7 +147,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     Polymer({
 
-      is: 'my-app',
+      is: 'my-scripture-planner-app',
 
       properties: {
 

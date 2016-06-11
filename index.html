@@ -14,11 +14,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
 
-  <title>My App</title>
+  <title>Scripture Planner</title>
 
-  <link rel="shortcut icon" sizes="32x32" href="/images/app-icon-32.png">
+  <link rel="shortcut icon" sizes="any" href="/images/noun_306736_book.svg">
 
-  <meta name="theme-color" content="#fff">
+  <meta name="theme-color" content="#795548">
   <link rel="manifest" href="/manifest.json">
 
   <script>
@@ -49,7 +49,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   </script>
 
-  <link rel="import" href="/src/my-app.html">
+  <link rel="import" href="/src/app-theme.html">
+  <link rel="import" href="/src/my-scripture-planner-app.html">
 
   <style>
 
@@ -58,7 +59,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       font-family: 'Roboto', 'Noto', sans-serif;
       line-height: 1.5;
       min-height: 100vh;
-      background-color: #eee;
+      background-color: var(--default-primary-color);
     }
 
   </style>
@@ -66,7 +67,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </head>
 <body>
 
-  <my-app></my-app>
+  <my-scripture-planner-app></my-scripture-planner-app>
 
 </body>
 </html>
