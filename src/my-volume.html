@@ -1,7 +1,5 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<!-- <link rel="import" href="../../iron-scroll-threshold/iron-scroll-threshold.html"> -->
-<!-- <link rel="import" href="../../paper-spinner/paper-spinner.html"> -->
-<link rel="import" href="../iron-list.html">
+<link rel="import" href="../bower_components/iron-list/iron-list.html">
 
 
 <dom-module id="my-volume">
@@ -11,48 +9,38 @@
     <style include="app-theme-styles">
       :host {
         display: block;
-        padding: 10px;
+        padding: 5px;
+      }
+      .scrollable-element {
+        display: block;
+        position: relative;
+        padding: 5px;
+        width: 900px;
+        height: 900px;
+        background-color: var(--dark-primary-color);
       }
       .card {
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
         padding: 16px;
         margin: 24px;
         border-radius: 5px;
-        background-color: var(--text-primary-color);
+        background-color: var(--dark-primary-color);
         color: var(--primary-text-color);
-        width: 50px;  /* added by DAY */
-        height: 50px; /* added by DAY */
-      }
-      .circle {
-        display: inline-block;
-        height: 64px;
-        width: 64px;
-        border-radius: 50%;
-        line-height: 64px;
-        font-size: 30px;
-        background: var(--accent-color);
-        color: var(--primary-text-color);
-        text-align: center;
       }
       h1 {
         font-size: 22px;
         margin: 16px 0;
         color: var(--primary-text-color);
       }
-
       .cardContent {
-        @apply(--layout);
-        background-color: #ddd;
-        position: relative;
+        display: block;
+        background-color: var(--primary-background-color);
         width: 300px;
         height: 300px;
         margin: 8px;
       }
       .cardContent:hover .detail{
         opacity: 1;
-      }
-      .cardContent > .card {
-        @apply(--layout-flex);
       }
       .cardContent > .detail {
         position: absolute;
@@ -67,9 +55,8 @@
         opacity: 0;
         transition: opacity 0.1s;
       }
-
-
       iron-list {
+          position: absolute;
           margin-top: 90px;
           padding-bottom: 16px;
       }
@@ -95,7 +82,7 @@
 
     </style>
 
-
+    <h1>Choose the volume of scripture you will read:</h1>
     <div id="scrollable-element" style="overflow: auto;">
       <iron-list items="[[volumes]]" as="volume" scroll-target="scrollable-element" grid>
         <template>
@@ -106,34 +93,11 @@
                 <h1>[[volume.name]]</h1>
                 <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
               </div>
-              <div class="detail">Select</div>
-            </div>
- 
+            <div class="detail">Select</div>
           </div>
         </template>
       </iron-list>
     </div>
-
-
-<!--     <div class="card">
-      <div class="circle">1</div>
-      <h1>View One</h1>
-      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.
-      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      orem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
-    </div> -->
-
   </template>
 
   <script>
@@ -144,12 +108,14 @@
 
       properties: {
         volumes: {
-          type: Array
-          value: ["The Bible", 
-                  "The Book of Mormon",
-                  "Doctrine and Convenants",
-                  "Pearl of Great Price"
-          ]
+          type: Array,
+          value: [
+            {"name": "The Bible"},
+            {"name": "The Book of Mormon"},
+            {"name": "Doctrine and Convenants"},
+            {"name": "Pearl of Great Price"}
+          ],
+          notify: true
         }
       }
     });
