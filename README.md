@@ -1,3 +1,14 @@
+DAY: I use the polymer-cli tools mentioned below,
+I also use firebase to host
+"npm install -g firebase-tools"
+Then
+firebase login
+firebase init (specify the build/bundled directory)
+(after a "polymer build")
+firebase deploy
+
+
+
 # Polymer App Toolbox - Drawer Template
 
 This template is a starting point for building apps using a drawer-based
@@ -62,6 +73,7 @@ be served by a push-compatible server:
 This command serves the minified version of the app generated using fragment bundling:
 
     polymer serve build/bundled
+
 
 ### Extend
 
