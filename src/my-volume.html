@@ -9,23 +9,14 @@
     <style include="app-theme-styles">
       :host {
         display: block;
-        padding: 5px;
+        padding: 10px;
       }
       .scrollable-element {
         display: block;
         position: relative;
-        padding: 5px;
         width: 900px;
         height: 900px;
         background-color: var(--dark-primary-color);
-      }
-      .card {
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-        padding: 16px;
-        margin: 24px;
-        border-radius: 5px;
-        background-color: var(--dark-primary-color);
-        color: var(--primary-text-color);
       }
       h1 {
         font-size: 22px;
@@ -34,10 +25,24 @@
       }
       .cardContent {
         display: block;
+        position: relative;
+        box-shadow: 0 2px 2px 0 var(--light-primary-color), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        margin: 18px;
+        color: var(--primary-text-color);
         background-color: var(--primary-background-color);
-        width: 300px;
-        height: 300px;
-        margin: 8px;
+/*        border-radius: 5px;
+        border-style: outset;
+        border-color: var(--default-primary-color);
+*/
+
+
+
+        /*background-color: lightblue;*/
+        /*background-color: var(--primary-background-color);*/
+        
+        width: 150px;
+        height: 100px;
       }
       .cardContent:hover .detail{
         opacity: 1;
@@ -53,12 +58,13 @@
         font-weight: 100;
         padding: 20px;
         opacity: 0;
-        transition: opacity 0.1s;
+        transition: opacity 0.3s;
       }
       iron-list {
-          position: absolute;
-          margin-top: 90px;
-          padding-bottom: 16px;
+        --iron-list-items-container: {
+          margin: auto;
+          background-color: rgba(0.2, 0.2, 0.2, 0.2);
+        };
       }
       @media (max-width: 800px) {
         .cardContainer {
@@ -89,10 +95,7 @@
           <div class="cardContainer">
 
             <div class="cardContent" tabindex$="[[tabIndex]]">
-              <div class="card">
                 <h1>[[volume.name]]</h1>
-                <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
-              </div>
             <div class="detail">Select</div>
           </div>
         </template>
