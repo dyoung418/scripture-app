@@ -1,0 +1,27 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="my-offline">
+
+  <!-- Defines the element's style and local DOM -->
+  <template>
+    <style include="app-theme-styles">
+      :host {
+        display: block;
+        padding: 10px;
+      }
+    </style>
+    
+    <h1>Cannot load the page -- check your connection status</h1>
+  </template>
+
+  <!-- Creates the element's prototype and registers it -->
+  <script>
+    Polymer({
+      is: 'my-offline',
+      properties: {
+        route: Object
+      }
+    });
+  </script>
+
+</dom-module>
