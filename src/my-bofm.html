@@ -1,12 +1,8 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/iron-list/iron-list.html">
 
-<!-- DAY, This is a temporary hack! -->
-<!-- <link rel="import", href="my-bofm"> -->
 
-
-
-<dom-module id="my-volume">
+<dom-module id="my-bofm">
 
   <template>
 
@@ -82,14 +78,14 @@
 
     </style>
 
-    <h3>Choose a volume of scripture:</h3>
+    <h3>Specify the book and chapter</h3>
     <div id="scrollable-element" style="overflow: auto;">
-      <iron-list items="[[volumes]]" as="volume" scroll-target="scrollable-element" grid>
+      <iron-list items="[[books]]" as="book" scroll-target="scrollable-element" grid>
         <template>
           <div class="cardContainer">
 
             <div class="cardContent" tabindex$="[[tabIndex]]">
-                <a name=[[volume.name]] href=[[volume.href]]>[[volume.name]]</a>
+                <h3>[[book.name]]</h3>
             <div class="detail">Select</div>
           </div>
         </template>
@@ -101,19 +97,51 @@
 
     Polymer({
 
-      is: 'my-volume',
+      is: 'my-bofm',
 
       properties: {
-        volumes: {
+        books: {
           type: Array,
           value: [
-            {"name": "The Bible", "href": "/bible"},
-            {"name": "The Book of Mormon", "href": "/bofm"},
-            {"name": "Doctrine and Covenants", "href": "/dandc"},
-            {"name": "Pearl of Great Price", "href": "/pofgp"}
+            {"name": "1 Nephi"},
+            {"name": "2 Nephi"},
+            {"name": "Jacob"},
+            {"name": "Enos"},
+            {"name": "Jarom"},
+            {"name": "Omni"},
+            {"name": "Words of Mormon"},
+            {"name": "Mosiah"}, 
+            {"name": "Alma"},
+            {"name": "Helaman"},
+            {"name": "3 Nephi"},
+            {"name": "4 Nephi"},
+            {"name": "Mormon"},
+            {"name": "Ether"},
+            {"name": "Moroni"}
           ],
           notify: true
-        }
+        },
+        chapWordsByBook: {
+          type: Array,
+          value: [
+            [906, 879, 1065, 1261, 761, 202, 992, 1221, 259, 918, 1314, 860, 1892, 1282, 1488, 1632, 2523, 1216, 1290, 694, 952, 1506], 
+            [1540, 1456, 1166, 1298, 1168, 895, 403, 808, 2384, 962, 338, 643, 584, 202, 853, 367, 681, 561, 586, 927, 519, 134, 586, 887, 1698, 1481, 1459, 1236, 802, 708, 987, 426, 644],
+            [718, 1363, 618, 928, 3757, 510, 1241], 
+            [1156], 
+            [731], 
+            [1398], 
+            [856], 
+            [966, 2107, 1117, 1601, 739, 307, 1548, 937, 858, 953, 1268, 1289, 1065, 391, 1055, 560, 650, 1380, 978, 961, 1328, 619, 1185, 949, 837, 1199, 1598, 812, 1874], 
+            [1493, 1434, 1014, 1028, 2782, 388, 1439, 1229, 1505, 1440, 1461, 1857, 1343, 1525, 710, 1007, 1845, 1621, 1698, 1278, 954, 1864, 761, 1497, 748, 1662, 1252, 573, 708, 2656, 1473, 1830, 855, 1574, 699, 1226, 2024, 648, 793, 1146, 698, 1222, 2209, 1241, 910, 1800, 1575, 1072, 1344, 1731, 1674, 1755, 1083, 988, 1217, 2175, 1515, 1746, 489, 1772, 852, 2214, 622], 
+            [1411, 591, 1524, 1073, 2081, 1801, 1140, 1208, 1474, 718, 1561, 855, 1853, 1240, 824, 1025], 
+            [1339, 769, 1351, 1514, 931, 1197, 1127, 868, 965, 807, 1432, 1295, 834, 624, 730, 911, 879, 1343, 1228, 1534, 1152, 506, 415, 617, 183, 791, 1286, 1452, 394, 130], 
+            [1946], 
+            [705, 1261, 936, 822, 1064, 913, 453, 1715, 1558], 
+            [901, 1369, 1252, 890, 225, 1047, 912, 1230, 1419, 1411, 762, 1533, 1219, 1131, 1312], 
+            [147, 119, 120, 153, 90, 335, 1929, 1062, 1011, 1148]
+          ],
+          notify: true
+        } 
       }
     });
 
