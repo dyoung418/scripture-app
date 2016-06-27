@@ -1,7 +1,8 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/iron-list/iron-list.html">
 
-<dom-module id="my-volume">
+
+<dom-module id="my-pgp">
 
   <template>
 
@@ -77,14 +78,14 @@
 
     </style>
 
-    <h3>Choose a volume of scripture:</h3>
+    <h3>Specify the book and chapter</h3>
     <div id="scrollable-element" style="overflow: auto;">
-      <iron-list items="[[volumes]]" as="volume" scroll-target="scrollable-element" grid>
+      <iron-list items="[[books]]" as="book" scroll-target="scrollable-element" grid>
         <template>
           <div class="cardContainer">
 
             <div class="cardContent" tabindex$="[[tabIndex]]">
-                <a name=[[volume.name]] href=[[volume.href]]>[[volume.name]]</a>
+                <h3>[[book.name]]</h3>
             <div class="detail">Select</div>
           </div>
         </template>
@@ -96,19 +97,31 @@
 
     Polymer({
 
-      is: 'my-volume',
+      is: 'my-pgp',
 
       properties: {
-        volumes: {
+        books: {
           type: Array,
           value: [
-            {"name": "The Bible", "href": "/bible"},
-            {"name": "The Book of Mormon", "href": "/bofm"},
-            {"name": "Doctrine and Covenants", "href": "/dc"},
-            {"name": "Pearl of Great Price", "href": "/pgp"}
+            {"name": "Moses"},
+            {"name": "Abraham"},
+            {"name": "Joseph Smith—Matthew"},
+            {"name": "Joseph Smith—History"},
+            {"name": "Articles of Faith"}
           ],
           notify: true
-        }
+        },
+        chapWordsByBook: {
+          type: Array,
+          value: [
+            [1470, 1018, 888, 1065, 1960, 2398, 2839, 892 ],
+            [1374, 1030, 1242, 1196, 660 ],
+            [1527 ],
+            [7613 ],
+            [399 ]
+          ],
+          notify: true
+        } 
       }
     });
 
