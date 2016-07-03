@@ -78,19 +78,38 @@
 
     </style>
 
-    <h3>Specify the book and chapter</h3>
-    <div id="scrollable-element" style="overflow: auto;">
-      <iron-list items="[[books]]" as="book" scroll-target="scrollable-element" grid>
-        <template>
-          <div class="cardContainer">
-            <div on-tap="tapEvent" title=[[book.name]] class="cardContent" tabindex$="[[tabIndex]]">
-                <h3 title=[[book.name]]>[[book.name]]</h3>
-                <div class="detail" title=[[book.name]]>Select</div>
+    <div id="bofm-books" display=block>
+      <h3>Choose the book</h3>
+      <div id="scrollable-element" style="overflow: auto;">
+        <iron-list items="[[books]]" as="book" scroll-target="scrollable-element" grid>
+          <template>
+            <div class="cardContainer">
+              <div on-tap="tapEvent" title=[[book.name]] class="cardContent" tabindex$="[[tabIndex]]">
+                  <h3 title=[[book.name]]>[[book.name]]</h3>
+                  <div class="detail" title=[[book.name]]>Select</div>
+              </div>
             </div>
-          </div>
-        </template>
-      </iron-list>
+          </template>
+        </iron-list>
+      </div>
     </div>
+
+    <div id="bofm-chapters" display=none>
+      <h3>Choose the chapter</h3>
+      <div id="scrollable-element" style="overflow: auto;">
+        <iron-list items="[[currentChapList]]" as="chapter" scroll-target="scrollable-element" grid>
+          <template>
+            <div class="cardContainer">
+              <div on-tap="tapEvent" title=[[chapter]] class="cardContent" tabindex$="[[tabIndex]]">
+                  <h3 title=[[chapter]]>[[chapter]]</h3>
+                  <div class="detail" title=[[chapter]]>Select</div>
+              </div>
+            </div>
+          </template>
+        </iron-list>
+      </div>
+    </div>
+
 
   </template>
 
@@ -105,15 +124,26 @@
       // },
 
       tapEvent: function(e) {
-        // console.log(e);
-        // console.log(e.isTrusted);
-        // console.log(e.detail);
-        // console.log(e.model);
-        // console.log(e.model._config);
-        // console.log(e.target);
-        // console.log(this);
         console.log(e.target.title);
-        // alert("You selected "+e.target.title);
+        this.currentBook = e.target.title;
+        var i = 0;
+        for(entry in this.books) {
+          if(entry.name == e.target.title) {
+            currentChapWordsList = this.chapWordsByBook[i];
+          } else {
+            i = i + 1;
+          }
+        }
+        chapNum = 0;
+        for(chap in this.currentChapWordsList) {
+          this.currentChapList.append[chapNum];
+          chapNum = chapNum +1;
+        }
+        console.log("currentBook is "+this.currentBook);
+        console.log("currentChapWordsList is "+this.currentChapWordsList);
+        console.log("currentChapList is "+this.currentChapList);
+        this.$$('#bofm-books').display = "none";
+        this.$$('#bofm-chapters').display = "block";
       },
 
       properties: {
@@ -158,7 +188,22 @@
             [147, 119, 120, 153, 90, 335, 1929, 1062, 1011, 1148]
           ],
           notify: true
-        } 
+        },
+        currentBook: {
+          type: String,
+          value: "",
+          notify: true
+        },
+        currentChapWordsList: {
+          type: Array,
+          value: [],
+          notify: true
+        },
+        currentChapList: {
+          type: Array,
+          value: [],
+          notify: true
+        }
       }
     });
 
