@@ -82,10 +82,10 @@
       <iron-list items="[[volumes]]" as="volume" scroll-target="scrollable-element" grid>
         <template>
           <div class="cardContainer">
-
-            <div class="cardContent" tabindex$="[[tabIndex]]">
-                <a name=[[volume.name]] href=[[volume.href]]>[[volume.name]]</a>
-            <div class="detail">Select</div>
+            <div on-tap="tapEvent" title=[[volume.href]] class="cardContent" tabindex$="[[tabIndex]]">
+              <h3 title=[[volume.href]]>[[volume.name]]</h3>
+              <div class="detail" title=[[volume.href]]>Select</div>
+            </div>
           </div>
         </template>
       </iron-list>
@@ -97,6 +97,17 @@
     Polymer({
 
       is: 'my-volume',
+
+      tapEvent: function(e) {
+        console.log(e.target.title);
+        // alert("You selected "+e.target.title);
+        // console.log(this.$$('iron-list'));
+        // console.log(this.domHost);
+        // console.log(this.domHost.$$('app-location'));
+        // this.domHost.$$('app-location').route = e.target.title; // go to the page
+        // this.domHost.page = e.target.title; // Go to the page
+        window.location.assign(e.target.title);
+      },
 
       properties: {
         volumes: {

@@ -83,14 +83,15 @@
       <iron-list items="[[books]]" as="book" scroll-target="scrollable-element" grid>
         <template>
           <div class="cardContainer">
-
-            <div class="cardContent" tabindex$="[[tabIndex]]">
-                <h3>[[book.name]]</h3>
-            <div class="detail">Select</div>
+            <div on-tap="tapEvent" title=[[book.name]] class="cardContent" tabindex$="[[tabIndex]]">
+                <h3 title=[[book.name]]>[[book.name]]</h3>
+                <div class="detail" title=[[book.name]]>Select</div>
+            </div>
           </div>
         </template>
       </iron-list>
     </div>
+
   </template>
 
   <script>
@@ -98,6 +99,22 @@
     Polymer({
 
       is: 'my-bofm',
+
+      // listeners: {
+      //   'tap': 'tapEvent'
+      // },
+
+      tapEvent: function(e) {
+        // console.log(e);
+        // console.log(e.isTrusted);
+        // console.log(e.detail);
+        // console.log(e.model);
+        // console.log(e.model._config);
+        // console.log(e.target);
+        // console.log(this);
+        console.log(e.target.title);
+        // alert("You selected "+e.target.title);
+      },
 
       properties: {
         books: {
