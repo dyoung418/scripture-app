@@ -136,13 +136,14 @@
         bookSection.style = "display: none;";
         var chapterSection = this.$$('#bofm-chapters')
         chapterSection.style = "display: block;";
+        this.$$('#bofm-chapters > iron-list').fire('iron-resize');
       },
       tapChapter: function(e) {
         this.currentChapter = this.currentChapList[e.target.title];
         console.log("chapter "+this.currentChapter);
         alert("You selected: "+ this.currentBook + " " + this.currentChapter);
         var chapterSection = this.$$('#bofm-chapters')
-        chapterSection.style = "display: none;";
+        // chapterSection.style = "display: none;";
       },
 
       properties: {
