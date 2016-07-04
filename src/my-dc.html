@@ -9,6 +9,9 @@
     <style include="app-theme-styles">
       :host {
         display: block;
+        -webkit-box-sizing: border-box;
+           -moz-box-sizing: border-box;
+                box-sizing: border-box;
         padding: 10px;
       }
       .scrollable-element {
@@ -78,7 +81,8 @@
 
     </style>
 
-    <h3>Specify the book and chapter</h3>
+
+    <h3>Choose the book</h3>
     <div id="scrollable-element" style="overflow: auto;">
       <iron-list items="[[books]]" as="book" scroll-target="scrollable-element" grid>
         <template>
@@ -93,6 +97,8 @@
     </div>
 
   </template>
+
+
 
   <script>
 
@@ -109,7 +115,7 @@
         books: {
           type: Array,
           value: [
-            {"name": "D&C"},
+            {"name": "Doctrine and Covenants"},
             {"name": "D&C Official Declarations"}
           ],
           notify: true
