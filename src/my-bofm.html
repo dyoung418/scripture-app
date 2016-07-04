@@ -81,19 +81,38 @@
 
     </style>
 
-    <h3>Choose the book</h3>
-    <div id="scrollable-element" style="overflow: auto;">
-      <iron-list items="[[books]]" as="book" scroll-target="scrollable-element" grid>
-        <template>
-          <div class="cardContainer">
-            <div on-tap="tapEvent" title=[[book.name]] class="cardContent" tabindex$="[[tabIndex]]">
-                <h3 title=[[book.name]]>[[book.name]]</h3>
-                <div class="detail" title=[[book.name]]>Select</div>
+    <div id="bofm-books">
+      <h3>Choose the book</h3>
+      <div id="scrollable-element" style="overflow: auto;">
+        <iron-list items="[[books]]" as="book" indexAs="index" scroll-target="scrollable-element" grid>
+          <template>
+            <div class="cardContainer">
+              <div on-tap="tapEvent" title=[[index]] class="cardContent" tabindex$="[[tabIndex]]">
+                  <h3 title=[[index]]>[[book.name]]</h3>
+                  <div class="detail" title=[[index]]>Select</div>
+              </div>
             </div>
-          </div>
-        </template>
-      </iron-list>
+          </template>
+        </iron-list>
+      </div>
     </div>
+
+    <div id="bofm-chapters" display="none">
+      <h3>Choose the chapter</h3>
+      <div id="scrollable-element" style="overflow: auto;">
+        <iron-list items="[[currentChapList]]" as="chapter" scroll-target="scrollable-element" grid>
+          <template>
+            <div class="cardContainer">
+              <div on-tap="tapEvent" title=[[chapter]] class="cardContent" tabindex$="[[tabIndex]]">
+                  <h3 title=[[chapter]]>[[chapter]]</h3>
+                  <div class="detail" title=[[chapter]]>Select</div>
+              </div>
+            </div>
+          </template>
+        </iron-list>
+      </div>
+    </div>
+
 
   </template>
 
@@ -103,16 +122,27 @@
 
       is: 'my-bofm',
 
+      listeners: {
+        'ready': 'listReady'
+      },
+      listReady: function(e){
+        console.log("in listReady");
+        console.log(e.model);
+      },
+
       tapEvent: function(e) {
-        // console.log(e);
-        // console.log(e.isTrusted);
-        // console.log(e.detail);
-        // console.log(e.model);
-        // console.log(e.model._config);
-        // console.log(e.target);
-        // console.log(this);
         console.log(e.target.title);
-        // alert("You selected "+e.target.title);
+        this.currentBook = this.books[e.target.title].name;
+        this.currentChapWordsList = this.chapWordsByBook[e.target.title];
+        this.currentChapList = this.currentChapWordsList.slice(); // make a copy
+        this.currentChapList.forEach(function(item, index, array){
+          array[index] = index +1;
+        });
+        console.log("currentBook is "+this.currentBook);
+        console.log("currentChapWordsList is "+this.currentChapWordsList);
+        console.log("currentChapList is "+this.currentChapList);
+        // this.$$('#bofm-books').display = "none";
+        // this.$$('#bofm-chapters').display = "block";
       },
 
       properties: {
@@ -157,7 +187,22 @@
             [147, 119, 120, 153, 90, 335, 1929, 1062, 1011, 1148]
           ],
           notify: true
-        } 
+        },
+        currentBook: {
+          type: String,
+          value: "",
+          notify: true
+        },
+        currentChapWordsList: {
+          type: Array,
+          value: [],
+          notify: true
+        },
+        currentChapList: {
+          type: Array,
+          value: [],
+          notify: true
+        }
       }
     });
 
