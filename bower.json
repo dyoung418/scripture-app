@@ -1,7 +1,7 @@
 {
-  "name": "app-drawer-template",
+  "name": "scripture-app",
   "authors": [
-    "The Polymer Authors"
+    "Daniel Young"
   ],
   "private": true,
   "dependencies": {
