@@ -1,0 +1,1 @@
+for x in 32 64 128 144 152 192 256 384 512; do inkscape --export-png icon${x} -w ${x} icon.svg ; done

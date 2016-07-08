@@ -1,6 +1,7 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/iron-list/iron-list.html">
-
+<link rel="import" href="../bower_components/paper-date-picker/paper-date-picker-dialog-style.html">
+<link rel="import" href="../bower_components/paper-dialog">
 
 <dom-module id="my-bofm">
 
@@ -104,6 +105,16 @@
       </iron-list>
     </div>
 
+<!--     <paper-dialog id="dialog" class="paper-date-picker-dialog" modal
+      on-iron-overlay-closed="dismissDialog">
+      <paper-date-picker id="picker" date="[[date]]"></paper-date-picker>
+      <div class="buttons">
+        <paper-button dialog-dismiss>Cancel</paper-button>
+        <paper-button dialog-confirm>OK</paper-button>
+      </div>
+    </paper-dialog>
+ -->
+
 
   </template>
 
@@ -147,6 +158,8 @@
       },
 
       properties: {
+        date: _today(),
+
         books: {
           type: Array,
           value: [
@@ -208,6 +221,9 @@
           type: String,
           value: "",
           notify: true
+        },
+        function _today() {
+          return Date.now();
         }
       }
     });

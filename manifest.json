@@ -1,13 +1,46 @@
 {
   "name": "Scripture Reading Planner",
   "short_name": "Scripture Planner",
-    "icons": [{
-      "src": "images/noun_306736_book.svg",
-      "type": "image/svg",
-      "sizes": "any"
-    },],
+    "icons": [
+    {
+      "src": "images/icon128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icon144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icon152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icon192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icon256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icon384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icon512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
   "start_url": "/",
   "display": "standalone",
   "background_color": "#795548",
-  "theme_color": "#795548"
+  "theme_color": "#795548",
+  "lang": "en-US"
 }
