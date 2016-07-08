@@ -1,7 +1,10 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/iron-list/iron-list.html">
+<link rel="import" href="../bower_components/paper-date-picker/paper-date-picker.html">
 <link rel="import" href="../bower_components/paper-date-picker/paper-date-picker-dialog-style.html">
-<link rel="import" href="../bower_components/paper-dialog">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+
+<link rel="import" href="../bower_components/paper-button/paper-button.html"> <!-- DAY TEMP -->
 
 <dom-module id="my-bofm">
 
@@ -77,6 +80,10 @@
 
     </style>
 
+    <paper-button raised on-click="openDialog">plain dialog</paper-button>
+
+<!--     <paper-date-picker></paper-date-picker> -->
+
     <div id="bofm-books" style="display: block;">
       <h3>Choose the book</h3>
       <iron-list items="[[books]]" as="book" indexAs="index" grid>
@@ -105,15 +112,15 @@
       </iron-list>
     </div>
 
-<!--     <paper-dialog id="dialog" class="paper-date-picker-dialog" modal
+    <paper-dialog id="dialog" class="paper-date-picker-dialog" modal
       on-iron-overlay-closed="dismissDialog">
-      <paper-date-picker id="picker" date="[[date]]"></paper-date-picker>
+      <paper-date-picker id="picker"></paper-date-picker>
+<!--       <paper-date-picker id="picker" date="[[date]]"></paper-date-picker> -->
       <div class="buttons">
         <paper-button dialog-dismiss>Cancel</paper-button>
         <paper-button dialog-confirm>OK</paper-button>
       </div>
     </paper-dialog>
- -->
 
 
   </template>
@@ -127,6 +134,11 @@
       listeners: {
         'ready': 'listReady'
       },
+
+      openDialog: function(){
+        this.$$('#dialog').open();
+      },
+
       listReady: function(e){
         console.log("in listReady");
         console.log(e.model);
@@ -158,8 +170,11 @@
       },
 
       properties: {
-        date: _today(),
-
+        date: {
+          type: Date,
+          value: function() {return Date.now();},
+          notify: true
+        },
         books: {
           type: Array,
           value: [
@@ -221,9 +236,6 @@
           type: String,
           value: "",
           notify: true
-        },
-        function _today() {
-          return Date.now();
         }
       }
     });
