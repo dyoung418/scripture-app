@@ -2,6 +2,7 @@
 <link rel="import" href="../bower_components/iron-list/iron-list.html">
 <link rel="import" href="../bower_components/paper-date-picker/paper-date-picker.html">
 <link rel="import" href="../bower_components/paper-date-picker/paper-date-picker-dialog-style.html">
+<!-- https://customelements.io/bendavis78/paper-date-picker/ -->
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 
 <link rel="import" href="../bower_components/paper-button/paper-button.html"> <!-- DAY TEMP -->
@@ -137,6 +138,7 @@
 
       openDialog: function(){
         this.$$('#dialog').open();
+        // this.$$('#picker').notifyResize(); // tried this but it didn't fix dialog
       },
 
       listReady: function(e){
