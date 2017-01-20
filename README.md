@@ -7,6 +7,13 @@ firebase init (specify the build/bundled directory)
 (after a "polymer build")
 firebase deploy
 
+DAY: The git repository doesn't include the bower or node directories.
+To re-initialize these do the following:
+# Install bower
+npm install -g bower
+# Re-install packages specified in bower.json
+bower install
+
 
 
 # Polymer App Toolbox - Drawer Template
