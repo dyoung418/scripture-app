@@ -1,4 +1,4 @@
-import json, os.path
+import json, os.path, csv, re, pprint
 
 def getComplexInfo():
     try:
@@ -55,13 +55,15 @@ def simplifyComplexInfo(complexInfo):
 
     example: filename bofm.json
 
-    {books: ['1st Nephi', '2nd Nephi', ...],
+   { name: 'bofm', 
+     info: {books: ['1st Nephi', '2nd Nephi', ...],
      chapWordsByBook: [ [209, 190, ...],  // 1st Nephi (# entries=#chapters, 
                                     //            value=#words in that chapter)
                   [188, 309, ...],  // 2nd Nephi
                   ...
                 ]
-    }
+     } 
+   }
 
     '''
     outputList = []
@@ -78,6 +80,7 @@ def simplifyComplexInfo(complexInfo):
         outputDict['name'] = scriptureSummary['name']
         outputDict['info'] = {}
         outputDict['info']['chapWordsByBook'] = [] # this will be a list of lists.  (one list for each book)
+        outputDict['info']['chapVersesByBook'] = [] # this will be a list of lists.  (one list for each book)
 
         for bookList in bookInput:
             # Book
@@ -91,20 +94,37 @@ def simplifyComplexInfo(complexInfo):
                 chapVerses.append(chapterSummary['verses'])
                 chapWords.append(chapterSummary['words'])
             outputDict['info']['chapWordsByBook'].append(chapWords)
+            outputDict['info']['chapVersesByBook'].append(chapVerses)
         outputDict['info']['books'] = bookNames
         outputList.append(outputDict)
         #print(outputDict)
     return outputList
 
 def writeWebAppInfo(simpleInfoList):
-    print(simpleInfoList)
+    #print(simpleInfoList)
     for bookDict in simpleInfoList:
         with open('{}.json'.format(bookDict['name']), 'w') as f:
             f.write(json.dumps(bookDict['info']))
 
+def writeCSVInfo(simpleInfoList):
+    pp = pprint.PrettyPrinter(width=600)
+    pp.pprint(simpleInfoList)
+    output = []
+    for bookDict in simpleInfoList:                                       # "bofm" struct
+        for index, book in enumerate(bookDict['info']['books']):          # "1 Nephi"
+            book = re.sub(u'\u2014', '--', book)
+            chapVerseList = bookDict['info']['chapVersesByBook'][index]
+            for chapter, num_verses in enumerate(chapVerseList):
+                output.append(["{} {}".format(book, chapter+1), "{}".format(num_verses)])
+        with open('{}.csv'.format(bookDict['name']), 'wb') as f:
+            csvwriter = csv.writer(f) 
+            for row in output:
+                csvwriter.writerow([s.encode("utf-8") for s in row])
+
+
 if __name__ == '__main__':
-    writeWebAppInfo(simplifyComplexInfo(getComplexInfo()))
+    simpleInfo = simplifyComplexInfo(getComplexInfo())
+    writeWebAppInfo(simpleInfo)
+    writeCSVInfo(simpleInfo)
             
         
-    
-    
